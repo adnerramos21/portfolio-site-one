@@ -84,7 +84,6 @@ export class AppComponent implements AfterViewInit {
     // reason why we use getComputedStyle
 
     const currentSlide = this.mySlides[this.slideIndex - 1];
-
     const slideHeight = +window
       .getComputedStyle(currentSlide, null)
       .getPropertyValue('height')
@@ -95,7 +94,6 @@ export class AppComponent implements AfterViewInit {
 
   setAndTranslateHeight(slideHeight: number): void {
     const slideContainer = this.slideshowContainer.nativeElement;
-
     const offsetY = -(slideHeight * (this.slideIndex - 1));
 
     this.renderer.setStyle(
