@@ -112,6 +112,10 @@
         }
       }
     }
+
+    .product-information {
+      justify-content: space-around;
+    }
   }
 
   .thumbnail-content {
@@ -302,6 +306,11 @@
 .row {
   display: flex;
   flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
 }
 
 .to-the-right {
