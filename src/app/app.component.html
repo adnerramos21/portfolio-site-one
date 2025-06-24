@@ -1,0 +1,199 @@
+<div class="wrapper">
+  <div class="content-wrapper colored-background" #contentWrapper>
+    <div fxLayout="row" class="top-bar row padding-0">
+      <div fxFlex="50%" class="row left-side to-the-left to-50">
+        <fa-icon icon="bars" class="fa-sharp fa-solid"></fa-icon>
+      </div>
+
+      <div fxFlex="50%" class="row right-side to-the-right to-50">
+        <div class="search-icon" fxHide.lt-md>
+          <fa-icon icon="magnifying-glass" class="fa-sharp fa-solid"></fa-icon>
+        </div>
+        <div class="find-text" fxHide.lt-md>Find a Local Store</div>
+        <div class="my-account-text" fxHide.lt-md>My Account</div>
+        <div class="cart-icon">
+          <fa-icon icon="cart-shopping" class="fa-sharp fa-solid"></fa-icon>
+        </div>
+      </div>
+    </div>
+
+    <div
+      fxLayout="row"
+      fxLayout.lt-md="column"
+      fxLayoutGap.lt-md="35px"
+      class="row content"
+    >
+      <div fxFlex="50%">
+        <div
+          class="back-button"
+          (click)="goBack()"
+          [@showHide]="!isVisible ? 'show' : 'hide'"
+        >
+          <fa-icon icon="arrow-left" class="fa-sharp fa-solid"></fa-icon>
+        </div>
+
+        <div class="slide-wrapper">
+          <!-- <div
+          class="slide-wrapper"
+          [ngStyle.lt-md]="{ 'marginLeft.%': !isVisible ? 5 : 0 }"
+        > -->
+
+          <a
+            class="up arrow"
+            (click)="slideUp(1)"
+            [@showHide]="isVisible ? 'show' : 'hide'"
+          >
+            <fa-icon icon="angle-up" class="fa-sharp fa-solid"></fa-icon>
+          </a>
+
+          <div class="slideshow-container" #slideshowContainer>
+            <div
+              class="mySlides"
+              #slide
+              [@scaleUpDown]="!isVisible ? 'scaleUp' : 'scaleDown'"
+            >
+              <img
+                src="../assets/image/headphones-1.jpg"
+                alt="1"
+                width="400"
+                height="530"
+              />
+            </div>
+            <div
+              class="mySlides"
+              #slide
+              [@scaleUpDown]="!isVisible ? 'scaleUp' : 'scaleDown'"
+            >
+              <img
+                src="../assets/image/headphones-2.jpg"
+                alt="2"
+                width="400"
+                height="530"
+              />
+            </div>
+            <div
+              class="mySlides"
+              #slide
+              [@scaleUpDown]="!isVisible ? 'scaleUp' : 'scaleDown'"
+            >
+              <img
+                src="../assets/image/headphones-3.jpg"
+                alt="3"
+                width="400"
+                height="530"
+              />
+            </div>
+          </div>
+
+          <a
+            class="down arrow"
+            (click)="slideDown(1)"
+            [@showHide]="isVisible ? 'show' : 'hide'"
+          >
+            <fa-icon icon="angle-down" class="fa-sharp fa-solid"></fa-icon>
+          </a>
+        </div>
+      </div>
+
+      <!-- /////////////////// CONVERTION ZONE ////////////////////// -->
+      <div fxFlex="50%">
+        <div class="convertion-zone">
+          <!-- [ngStyle.lt-md]="{ 'margin-left.px': 25 }" -->
+          <div class="brand">SYMPHONIZED Wraith 2.0</div>
+          <div class="item">Premium Genuine Wood Over-Ear Headphones</div>
+          <div class="price-wrapper">
+            <div>FROM</div>
+            <div class="price">
+              <span> $64.99 </span>
+            </div>
+          </div>
+
+          <div class="color-picker">
+            <div
+              #pickerElement
+              class="circle chocolate color-picker-element"
+              [class]="{ active: selectedColor === 1 }"
+              (click)="currentSlide(1)"
+            ></div>
+
+            <span #pickerElement class="color-picker-element"></span>
+
+            <div
+              #pickerElement
+              class="circle burlywood color-picker-element"
+              [class]="{ active: selectedColor === 2 }"
+              (click)="currentSlide(2)"
+            ></div>
+
+            <span #pickerElement class="color-picker-element"></span>
+
+            <div
+              #pickerElement
+              class="circle sienna color-picker-element"
+              [class]="{ active: selectedColor === 3 }"
+              (click)="currentSlide(3)"
+            ></div>
+          </div>
+
+          <div class="size-select" [@showHide]="!isVisible ? 'show' : 'hide'">
+            <div class="select-text">Select Your Size</div>
+            <div class="sizes">
+              <div class="selected">
+                <span>S</span>
+              </div>
+              <div>
+                <span>M</span>
+              </div>
+              <div>
+                <span>L</span>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="shop-now-button"
+            [@slideUpDown]="isVisible ? 'up' : 'down'"
+          >
+            <button (click)="shopNow()" *ngIf="isVisible">
+              <span>Shop Now</span>
+            </button>
+            <button *ngIf="!isVisible">
+              <span>Buy Now</span>
+            </button>
+          </div>
+
+          <div
+            fxLayout="row"
+            class="thumbnail-content"
+            [@showHide]="!isVisible ? 'show' : 'hide'"
+          >
+            <!-- [ngStyle.lt-md]="{ 'margin-bottom.px': 20 }" -->
+
+            <div>
+              <ol>
+                <li>
+                  <img
+                    src="../assets/image/headphone-usage-1.jpg"
+                    alt="headphone-usage-1"
+                  />
+                </li>
+                <li>
+                  <img
+                    src="../assets/image/headphone-usage-2.jpg"
+                    alt="headphone-usage-2"
+                  />
+                </li>
+                <li>
+                  <img
+                    src="../assets/image/headphone-usage-3.jpg"
+                    alt="headphone-usage-3"
+                  />
+                </li>
+              </ol>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
