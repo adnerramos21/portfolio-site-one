@@ -1,29 +1,24 @@
 <div class="wrapper">
   <div class="content-wrapper colored-background" #contentWrapper>
-    <div fxLayout="row" class="top-bar row padding-0">
-      <div fxFlex="50%" class="row left-side to-the-left to-50">
+    <div class="top-bar row padding-0">
+      <div class="row left-side to-the-left to-50">
         <fa-icon icon="bars" class="fa-sharp fa-solid"></fa-icon>
       </div>
 
-      <div fxFlex="50%" class="row right-side to-the-right to-50">
-        <div class="search-icon" fxHide.lt-md>
+      <div class="row right-side to-the-right to-50">
+        <div class="search-icon">
           <fa-icon icon="magnifying-glass" class="fa-sharp fa-solid"></fa-icon>
         </div>
-        <div class="find-text" fxHide.lt-md>Find a Local Store</div>
-        <div class="my-account-text" fxHide.lt-md>My Account</div>
+        <div class="find-text">Find a Local Store</div>
+        <div class="my-account-text">My Account</div>
         <div class="cart-icon">
           <fa-icon icon="cart-shopping" class="fa-sharp fa-solid"></fa-icon>
         </div>
       </div>
     </div>
 
-    <div
-      fxLayout="row"
-      fxLayout.lt-md="column"
-      fxLayoutGap.lt-md="35px"
-      class="row content"
-    >
-      <div fxFlex="50%">
+    <div class="row content">
+      <div>
         <div
           class="back-button"
           (click)="goBack()"
@@ -33,11 +28,6 @@
         </div>
 
         <div class="slide-wrapper">
-          <!-- <div
-          class="slide-wrapper"
-          [ngStyle.lt-md]="{ 'marginLeft.%': !isVisible ? 5 : 0 }"
-        > -->
-
           <a
             class="up arrow"
             (click)="slideUp(1)"
@@ -96,7 +86,7 @@
       </div>
 
       <!-- /////////////////// CONVERTION ZONE ////////////////////// -->
-      <div fxFlex="50%">
+      <div>
         <div class="convertion-zone">
           <!-- [ngStyle.lt-md]="{ 'margin-left.px': 25 }" -->
           <div class="brand">SYMPHONIZED Wraith 2.0</div>
@@ -163,12 +153,9 @@
           </div>
 
           <div
-            fxLayout="row"
             class="thumbnail-content"
             [@showHide]="!isVisible ? 'show' : 'hide'"
           >
-            <!-- [ngStyle.lt-md]="{ 'margin-bottom.px': 20 }" -->
-
             <div>
               <ol>
                 <li>

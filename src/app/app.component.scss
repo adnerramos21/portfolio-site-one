@@ -72,13 +72,15 @@
 
   .content {
     margin-top: 4%;
+    margin-left: 25px;
     position: relative;
+    height: 100vh;
 
     .back-button {
       cursor: pointer;
       position: absolute;
-      left: 3%;
-      top: -7px;
+      left: -9px;
+      top: -33px;
       padding: 6px;
       z-index: 1;
 

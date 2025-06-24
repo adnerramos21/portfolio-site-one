@@ -46,7 +46,7 @@ export class AppComponent implements AfterViewInit {
 
   isVisible: boolean = true;
   slideIndex: number = 1; // run first slide
-  targetObjCopy: object = {};
+  targetObjCopy: HTMLElement | null = null;
   colors: string[] = [
     'rgba(223, 85, 37, .75)',
     'rgba(225, 178, 119, .80)',
@@ -77,6 +77,7 @@ export class AppComponent implements AfterViewInit {
   }
 
   showSlides(n: number): void {
+    // -- Dev Note ---
     // Tried:
     // getBoundingClientRect, ResizeObserver, and requestAnimationFrame
     // ResizeObserver can be a better choice, but
@@ -84,10 +85,10 @@ export class AppComponent implements AfterViewInit {
     // reason why we use getComputedStyle
 
     const currentSlide = this.mySlides[this.slideIndex - 1];
-    const slideHeight = +window
-      .getComputedStyle(currentSlide, null)
-      .getPropertyValue('height')
-      .slice(0, -2); // slice off the "px" text and extract only the number value
+
+    const slideHeight = parseFloat(
+      window.getComputedStyle(currentSlide, null).getPropertyValue('height')
+    );
 
     this.setAndTranslateHeight(slideHeight);
   }
@@ -141,44 +142,49 @@ export class AppComponent implements AfterViewInit {
       }
     }
 
-    this.moveObjectToTargetPosition(this.targetObjCopy, 0);
+    if (this.targetObjCopy) {
+      this.moveObjectToTargetPosition(this.targetObjCopy, 0);
+    }
   }
 
   hideUnselectedColorElements(): void {
     const colorPickerElements = this.pickerElements.map(
-      (val) => val.nativeElement
+      (el) => el.nativeElement
     );
 
-    let accumulator = 0,
-      calculatedTargetDistance = 0,
-      targetObj: object = {},
-      currentElementWidth = 0;
+    let accumulator = 0;
+    let calculatedTargetDistance = 0;
+    let targetObj: HTMLElement | null = null;
+    let currentElementWidth = 0;
 
     for (let index = 0; index < colorPickerElements.length; index++) {
-      currentElementWidth = +window
-        .getComputedStyle(colorPickerElements[index])
-        .width.slice(0, -2);
+      const element = colorPickerElements[index];
+
+      currentElementWidth = element.getBoundingClientRect().width;
+
       accumulator += currentElementWidth;
 
-      if (colorPickerElements[index].classList.contains('active')) {
+      if (element.classList.contains('active')) {
         calculatedTargetDistance = accumulator - currentElementWidth;
-        targetObj = colorPickerElements[index];
+        targetObj = element;
       } else {
-        colorPickerElements[index].classList.add('disappear');
+        element.classList.add('disappear');
       }
     }
 
-    this.targetObjCopy = targetObj;
-    this.moveObjectToTargetPosition(targetObj, calculatedTargetDistance);
+    if (targetObj) {
+      this.targetObjCopy = targetObj;
+      this.moveObjectToTargetPosition(targetObj, calculatedTargetDistance);
+    }
   }
 
   moveObjectToTargetPosition(
-    targetObj: object,
+    targetObj: HTMLElement,
     calculatedTargetDistance: number
   ): void {
     gsap.to(targetObj, {
       duration: 1,
-      transform: `translate3d(-${calculatedTargetDistance}px, 0px, 0px)`,
+      transform: `translate3d(-${calculatedTargetDistance}px, 0, 0)`,
     });
   }
 
